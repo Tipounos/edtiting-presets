@@ -90,6 +90,46 @@ body  {
     -webkit-user-drag: none;
 }
 
+.primary {
+  color: var(--primary);
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.accent {
+  color: var(--secondary);
+  position: relative;
+  z-index: 1;
+}
+
+.primary::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: 55%;
+  left: -2px;
+  background: #325e00;
+  filter: brightness(100%);
+  z-index: -1;
+  padding: 0 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: primaryAnim .5s forwards ease-out;
+  animation-delay: 1s;
+}
+
+@keyframes primaryAnim {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .buttons-wrapper {
     width: 100%;
     display: flex;
@@ -104,13 +144,14 @@ body  {
     border-radius: 35px;
     cursor: pointer;
     border: 1px solid var(--border);
-    transition: scale 0.2s ease-out;
+    transition: scale 0.2s ease-out, filter 0.2s ease;
     font-family: sans-serif;
     text-decoration: none;
 }
 
 .secondary-btn:hover, .primary-btn:hover {
     scale : 105%;
+    filter: brightness(125%);
 }
 
 .primary-btn {
@@ -146,6 +187,7 @@ body  {
     background-color: var(--bg-light);
     position: relative;
     color: var(--secondary);
+
 }
 
 .secondary-btn-wrapper {
@@ -167,7 +209,7 @@ body  {
 }
 
 .secondary-btn-wrapper:hover::before {
-    opacity: 1;
+    opacity: .8;
 }
 
 section {
@@ -203,7 +245,7 @@ section {
     transform: translate(-50%, -50%);
     position: absolute;
     z-index: -1;
-    background: linear-gradient(120deg, #FF4FD8 0%, #8B5CF6 50%, #38BDF8 100%);
+    background: linear-gradient(120deg, #e698d4 0%, #a68ee0 50%, #88c0d8 100%);
     opacity: 0.3;
     filter: blur(100px) brightness(140%);
     padding: 10px;
@@ -291,16 +333,26 @@ header {
     font-family: "Satoshi Light";
     position: relative;
     text-align: center;
+    width: 100%;
 }
 
 h2.subtitle {
-    font-size: clamp(2rem, calc(3vw + 0.1rem), 7rem);
+    font-size: clamp(1.8rem, calc(2.4vw + 0.1rem), 5rem);
     font-weight: 900;
-    color: var(--text);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 60%;
+    width: fit-content;
+    z-index: 1;
+    padding: 0 4px;
+    /* backdrop-filter: blur(3px); */
+    border-radius: 3px;
 }
 
 h3.subtitle {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 100;
     color: var(--text-muted);
 }
@@ -310,6 +362,7 @@ h3.subtitle {
     display: flex;
     flex-direction: column;
     margin-bottom: 8%;
+    position: relative;
 }
 
 #player {
@@ -320,6 +373,7 @@ h3.subtitle {
     aspect-ratio: 16 / 9;
     margin-top: 40px;
     margin-bottom: 40px;
+    display: none;
 }
 
 #presentation {
@@ -367,9 +421,16 @@ h3.subtitle {
     flex-direction: row;
     color: var(--text);
     width: 100%;
+    max-width: 800px;
     margin-top: 40px;
     justify-content: center;
-    gap: 15px;
+    gap: 55px;
+}
+
+@media (max-width: 800px) {
+  .stats {
+    flex-direction: column;
+  }
 }
 
 .stats  * {
@@ -381,13 +442,18 @@ h3.subtitle {
 .stat-card {
     text-align: center;
     flex-wrap: nowrap;
+    flex: 1 0 auto;
 }
 
 .stat-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-wrap-mode: nowrap;
     color: transparent;
     background-clip: text !important;
+}
+
+.stat-explain {
+  font-size: 1.2rem;
 }
 
 #xp {

@@ -178,6 +178,7 @@ function showMailPopup() {
 // Auto yt video
 
 let player;
+const playerEl = document.getElementById("player")
 
 // 1️⃣ Crée le player YouTube
 function onYouTubeIframeAPIReady() {
@@ -201,6 +202,8 @@ function onPlayerReady(event) {
   const iframe = event.target.getIframe();
 
   let isPlaying = false;
+
+  playerEl.style.display = "block"
 
   // 3️⃣ Intersection Observer pour jouer/pause selon visibilité
   const observer = new IntersectionObserver((entries) => {
@@ -248,3 +251,11 @@ popup.addEventListener('click', e => {
     popup.style.display = "none";
   }
 });
+
+// hero animations
+
+const primaryEls = document.querySelectorAll(".pricmary")
+
+primaryEls.forEach((element) => {
+  element.style.backgroundColor = "red"
+})
