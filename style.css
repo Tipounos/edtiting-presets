@@ -139,14 +139,20 @@ body  {
 
 .secondary-btn, .primary-btn {
     display: inline-block;
-    font-size: 1.2rem;
-    padding: min(4vw, 18px) min(6vw, 32px);
+    font-size: 1.4rem;
+    padding: 21px 48px;
     border-radius: 35px;
     cursor: pointer;
     border: 1px solid var(--border);
     transition: scale 0.2s ease-out, filter 0.2s ease;
     font-family: sans-serif;
     text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .secondary-btn, .primary-btn {
+    padding: 16px 32px;
+  }
 }
 
 .secondary-btn:hover, .primary-btn:hover {
@@ -234,6 +240,14 @@ section {
     height: fit-content;
     letter-spacing: -5px;
     z-index: 1;
+}
+
+@media (max-width: 900px) {
+  #main-title {
+    font-size: 7rem;    
+  }
+
+
 }
 
 #main-title::before {
@@ -384,7 +398,7 @@ h3.subtitle {
 }
 
 .show {
-    translate: 0 0;
+    translate: 0;
     opacity: 1;
 }
 
@@ -480,9 +494,10 @@ h3.subtitle {
 .products-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10%;
+    gap: 40px;
     margin: 40px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .product {
@@ -675,24 +690,18 @@ h3.subtitle {
     border: 2px solid var(--border);
     box-shadow: 5px 10px 5px 0  rgba(0, 0, 0, 0.433);
     transform: translateY(-60px);
+    opacity: 0;
+    transition: transform 500ms ease-out, opacity 800ms ease-out;
 }
 
 .info.show-info {
-    animation: popup-spawn 500ms ease-out forwards;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .info:not(.show-info) {
-    animation: popup-despawn 500ms ease-out;
-}
-
-@keyframes popup-spawn {
-    from {transform: translateY(-60px);}
-    to {transform: translateY(0);}
-}
-
-@keyframes popup-despawn {
-    from {transform: translateY(0);}
-    to {transform: translateY(-60px);}
+    transform: translateY(-60px);
+    opacity: 0;
 }
 
 footer {
